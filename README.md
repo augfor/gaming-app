@@ -1,5 +1,5 @@
 ## Meet the team
 
-- Augusto Forero.
-- Iris Monteza.
-- Jerson Zúñiga.
+- [Augusto Forero](https://github.com/augfor).
+- [Iris Monteza](https://github.com/IrisMonteza).
+- [Jerson Zúñiga-Coayla](https://github.com/jersonzc).
