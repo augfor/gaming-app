@@ -1,0 +1,9 @@
+.center {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.sec {
+  margin: auto;
+}

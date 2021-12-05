@@ -1,0 +1,23 @@
+.btnStack {
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.heroStack {
+  margin-top: 200px;
+  align-items: center;
+}
+
+.primaryTxt {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  font-size: 80px;
+  text-align: center;
+}
+
+.secondaryTxt {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-weight: lighter;
+  font-size: 25px;
+  text-align: center;
+}
