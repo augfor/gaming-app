@@ -1,9 +1,12 @@
-import { Hero } from "./components/landing/Hero";
-
-import "./App.css";
+import * as React from "react";
+import LandingPage from "./pages/landing";
 
 function App() {
-  return <Hero></Hero>;
+  return (
+    <>
+      <LandingPage></LandingPage>
+    </>
+  );
 }
 
 export default App;
