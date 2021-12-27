@@ -1,5 +1,12 @@
+import * as React from "react";
+import LandingPage from "./pages/landing";
+
 function App() {
-  return <div>Hello World!</div>;
+  return (
+    <>
+      <LandingPage></LandingPage>
+    </>
+  );
 }
 
 export default App;
