@@ -1,10 +1,10 @@
-import * as React from "react";
-import LandingPage from "./pages/landing";
+import * as React from 'react';
+import Landing from './pages/Landing';
 
 function App() {
   return (
     <>
-      <LandingPage></LandingPage>
+      <Landing></Landing>
     </>
   );
 }

@@ -1,49 +1,69 @@
-import ResponsiveAppBar from "../components/navbar";
-
-import Image from "../assets/landing_bg.jpg";
-import { Button, CssBaseline, Paper } from "@mui/material";
-import Cta from "../components/cta";
-import { Box } from "@mui/system";
+// Material UI
+import {
+  Box,
+  Button,
+  createTheme,
+  CssBaseline,
+  Paper,
+  responsiveFontSizes,
+  Typography
+} from '@mui/material';
+import { ThemeProvider } from '@emotion/react';
+// Components
+import LandingNavbar from '../components/LandingNavbar';
+// Assets
+import Image from '../assets/landing_bg.jpg';
 
 const background = {
   paperContainer: {
-    width: "100vw",
-    height: "100vh",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    display: "flex",
-    flexDirection: "column",
-    // justifyContent: "space-between",
-    alignItems: "center",
     backgroundImage: `url(${Image})`,
-  },
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    borderRadius: '0px',
+    flexDirection: 'column',
+    height: '100vh',
+    width: '100vw'
+  }
 };
 
-const title = {
-  textContainer: {
-    color: "#FF286E",
-    fontSize: "10rem",
-    fontFamily: "Poppins",
-    margin: "0",
-    // height: "100vh",
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: '#fdf800'
+    }
   },
-};
+  typography: {
+    fontFamily: 'Poppins',
+    fontSize: 18
+  }
+});
 
-const LandingPage = () => {
+theme = responsiveFontSizes(theme);
+
+const Landing = () => {
   return (
     <>
       <Paper style={background.paperContainer}>
-        <ResponsiveAppBar />
-        <Box
-          sx={{ my: 2, color: "white", display: "block", height: "40vh" }}
-        ></Box>
+        <LandingNavbar />
+        <Box sx={{ display: 'block', height: '50vh' }}></Box>
         <CssBaseline />
-        <h1 style={title.textContainer}>GAMERS ONLY</h1>
-        <Cta></Cta>
+        <ThemeProvider theme={theme}>
+          <Typography align="center" color="#FF286E" variant="h1">
+            GAMERS ONLY
+          </Typography>
+          <Box
+            display="flex"
+            width="100vw"
+            height={80}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Button variant="contained">{'START'}</Button>
+          </Box>
+        </ThemeProvider>
       </Paper>
     </>
   );
 };
 
-export default LandingPage;
+export default Landing;

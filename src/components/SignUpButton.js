@@ -1,35 +1,30 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import Button from "@mui/material/Button";
-import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import Typography from "@mui/material/Typography";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+// Material UI
 import {
   Avatar,
   Box,
-  Checkbox,
+  Button,
   Container,
+  Dialog,
+  DialogTitle,
   CssBaseline,
-  DialogActions,
-  DialogContent,
-  FormControlLabel,
   Grid,
-  Link,
+  IconButton,
   TextField,
-} from "@mui/material";
-import { Copyright } from "@mui/icons-material";
+  Typography
+} from '@mui/material';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import CloseIcon from '@mui/icons-material/Close';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2)
   },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1)
+  }
 }));
 
 const BootstrapDialogTitle = (props) => {
@@ -43,10 +38,10 @@ const BootstrapDialogTitle = (props) => {
           aria-label="close"
           onClick={onClose}
           sx={{
-            position: "absolute",
+            position: 'absolute',
             right: 8,
             top: 8,
-            color: (theme) => theme.palette.grey[500],
+            color: (theme) => theme.palette.grey[500]
           }}
         >
           <CloseIcon />
@@ -58,23 +53,32 @@ const BootstrapDialogTitle = (props) => {
 
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#FF286E'
+    },
+    secondary: {
+      main: '#000000'
+    }
+  }
+});
 
-export default function SingUpButton() {
+const SingUpButton = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
     console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+      email: data.get('email'),
+      password: data.get('password')
     });
   };
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -86,9 +90,10 @@ export default function SingUpButton() {
   return (
     <div>
       <Button
+        theme={theme}
         variant="contained"
         onClick={handleClickOpen}
-        sx={{ textTransform: "none", backgroundColor: "#FF286E" }}
+        sx={{ textTransform: 'none' }}
       >
         Sign Up
       </Button>
@@ -107,12 +112,12 @@ export default function SingUpButton() {
             <Box
               sx={{
                 marginTop: 3,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                 <LockOutlinedIcon />
               </Avatar>
               <Typography component="h1" variant="h5">
@@ -176,21 +181,16 @@ export default function SingUpButton() {
                 >
                   Sign Up
                 </Button>
-                <Grid container justifyContent="flex-end">
-                  <Grid item>
-                    <Link href="#" variant="body2">
-                      Already have an account? Sign in
-                    </Link>
-                  </Grid>
-                </Grid>
               </Box>
             </Box>
           </Container>
         </ThemeProvider>
         <Box
-          sx={{ my: 2, color: "white", display: "block", height: "2vh" }}
+          sx={{ my: 2, color: 'white', display: 'block', height: '2vh' }}
         ></Box>
       </BootstrapDialog>
     </div>
   );
-}
+};
+
+export default SingUpButton;
