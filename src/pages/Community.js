@@ -2,13 +2,32 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 // Material UI
 import {
+  Avatar,
+  Box,
   Card,
-  CardContent,
   CardMedia,
   Container,
+  createTheme,
+  CssBaseline,
   Grid,
+  Stack,
+  ThemeProvider,
   Typography
 } from '@mui/material';
+// Components
+import Navbar from '../components/Navbar';
+
+const theme = createTheme({
+  palette: {
+    background: { default: '#000000' },
+    primary: {
+      main: '#3C4043'
+    },
+    secondary: {
+      main: '#000000'
+    }
+  }
+});
 
 const Community = () => {
   const [game, setGame] = useState({});
@@ -16,7 +35,7 @@ const Community = () => {
   useEffect(() => {
     const gameData = async () => {
       const result = await axios.get(
-        `https://api.rawg.io/api${window.location.pathname}?key=`
+        `https://api.rawg.io/api${window.location.pathname}?key=eee1d7390c4f4ce7a32fe78c75ee15a1`
       );
       console.log(result);
 
@@ -28,35 +47,120 @@ const Community = () => {
 
   return (
     <>
-      <Container>
-        <Grid
-          container
-          spacing={0}
-          direction="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Grid item xs={3} sx={{ paddingTop: 2 }}>
-            <Card elevation={0} sx={{ maxWidth: 700, paddingTop: 3 }}>
-              <CardMedia
-                component="img"
-                height="400"
-                image={game.background_image}
-                alt={game.name}
-                sx={{ objectFit: 'contain', paddingBottom: 4 }}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h3" component="div">
-                  {game.name}
+      <Navbar></Navbar>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Box sx={{ display: 'block', height: '2vh' }}></Box>
+        <Container>
+          <Grid
+            container
+            spacing={2}
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Box
+              component={Grid}
+              item
+              xs={0}
+              md={2.5}
+              sx={{ paddingTop: 2 }}
+              display={{ xs: 'none', sm: 'none', md: 'block' }}
+            >
+              <Card
+                elevation={0}
+                sx={{
+                  maxWidth: 700,
+                  height: '82vh',
+                  borderRadius: '10px 0px 0px 10px'
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  height="910px"
+                  image={game.background_image}
+                  alt={game.name}
+                  sx={{ objectFit: 'cover', paddingBottom: 2 }}
+                />
+              </Card>
+            </Box>
+            <Grid item xs={12} md={7} sx={{ paddingTop: 2 }}>
+              <Box sx={{ background: '#3C4043', height: '82vh' }}></Box>
+            </Grid>
+            <Grid
+              item
+              xs={0}
+              md={2.5}
+              sx={{ paddingTop: 2 }}
+              display={{ xs: 'none', sm: 'none', md: 'block' }}
+            >
+              <Box
+                sx={{
+                  background: '#3C4043',
+                  height: '82vh',
+                  borderRadius: '0px 10px 10px 0px'
+                }}
+              >
+                <Typography
+                  gutterBottom
+                  variant="subtitle2"
+                  sx={{
+                    color: '#FFFFFF',
+                    fontWeight: 'bold',
+                    padding: '15px 0px 0px 15px'
+                  }}
+                >
+                  {`Admins - 1`}
                 </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                  {game.description}
+                <Stack
+                  direction="row"
+                  spacing={1.5}
+                  alignItems="center"
+                  sx={{ padding: '10px 0px 70px 15px' }}
+                >
+                  <Avatar alt="Iris" src="/static/images/avatar/1.jpg" />
+                  <Typography gutterBottom sx={{ color: '#fdf800' }}>
+                    Iris
+                  </Typography>
+                </Stack>
+                <Typography
+                  gutterBottom
+                  variant="subtitle2"
+                  sx={{
+                    color: '#FFFFFF',
+                    fontWeight: 'bold',
+                    padding: '0px 0px 0px 15px'
+                  }}
+                >
+                  {`Community - 2`}
                 </Typography>
-              </CardContent>
-            </Card>
+                <Stack
+                  direction="row"
+                  spacing={1.5}
+                  alignItems="center"
+                  sx={{ padding: '10px 0px 0px 15px' }}
+                >
+                  <Avatar alt="Augusto" src="/static/images/avatar/1.jpg" />
+                  <Typography gutterBottom sx={{ color: '#FF286E' }}>
+                    Augusto
+                  </Typography>
+                </Stack>
+                <Stack
+                  direction="row"
+                  spacing={1.5}
+                  alignItems="center"
+                  sx={{ padding: '10px 0px 0px 15px' }}
+                >
+                  <Avatar alt="Jerson" src="/static/images/avatar/1.jpg" />
+                  <Typography gutterBottom sx={{ color: '#FF286E' }}>
+                    Jerson
+                  </Typography>
+                </Stack>
+              </Box>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </ThemeProvider>
     </>
   );
 };

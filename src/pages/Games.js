@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 // Material UI
 import {
+  Box,
   Button,
   Card,
   CardActions,
@@ -14,7 +16,8 @@ import {
   ThemeProvider,
   Typography
 } from '@mui/material';
-import { Link } from 'react-router-dom';
+// Components
+import Navbar from '../components/Navbar';
 
 const theme = createTheme({
   palette: {
@@ -33,7 +36,9 @@ const Games = () => {
 
   useEffect(() => {
     const gameData = async () => {
-      const result = await axios.get('https://api.rawg.io/api/games?key=');
+      const result = await axios.get(
+        'https://api.rawg.io/api/games?key=eee1d7390c4f4ce7a32fe78c75ee15a1'
+      );
       console.log(result);
 
       setGames(result.data.results);
@@ -44,6 +49,8 @@ const Games = () => {
 
   return (
     <>
+      <Navbar></Navbar>
+      <Box sx={{ display: 'block', height: '2vh' }}></Box>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container>
