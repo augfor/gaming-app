@@ -16,8 +16,8 @@ import {
   ThemeProvider,
   Typography
 } from '@mui/material';
-// Components
-import Navbar from '../components/Navbar';
+// API
+import { API_KEY } from '../api';
 
 const theme = createTheme({
   palette: {
@@ -36,12 +36,12 @@ const Games = () => {
 
   useEffect(() => {
     const gameData = async () => {
-      const result = await axios.get(
-        'https://api.rawg.io/api/games?key=eee1d7390c4f4ce7a32fe78c75ee15a1'
+      const response = await axios.get(
+        `https://api.rawg.io/api/games?key=${API_KEY}`
       );
-      console.log(result);
+      console.log(response);
 
-      setGames(result.data.results);
+      setGames(response.data.results);
     };
 
     gameData();
@@ -49,7 +49,6 @@ const Games = () => {
 
   return (
     <>
-      <Navbar></Navbar>
       <Box sx={{ display: 'block', height: '2vh' }}></Box>
       <ThemeProvider theme={theme}>
         <CssBaseline />

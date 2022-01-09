@@ -9,8 +9,6 @@ import {
   Typography
 } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
-// Components
-import LandingNavbar from '../components/LandingNavbar';
 // Assets
 import Image from '../assets/landing_bg.jpg';
 
@@ -44,7 +42,6 @@ const Landing = () => {
   return (
     <>
       <Paper style={background.paperContainer}>
-        <LandingNavbar />
         <Box sx={{ display: 'block', height: '50vh' }}></Box>
         <CssBaseline />
         <ThemeProvider theme={theme}>
