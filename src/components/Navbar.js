@@ -1,3 +1,7 @@
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+// Context
+import Store from '../store/Store';
 // Material UI
 import { AppBar, Box, Button, Container, Stack, Toolbar } from '@mui/material';
 // Components
@@ -5,8 +9,22 @@ import LogInButton from './LogInButton';
 import SignUpButton from './SignUpButton';
 // Assets
 import Image from '../assets/Logo_latcom.png';
+// API
+import { logOut } from '../api/users';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { state, dispatch } = useContext(Store);
+  const { user } = state;
+
+  function onLogOut() {
+    dispatch({
+      type: 'UNSET_USER'
+    });
+    logOut();
+    navigate('/');
+  }
+
   return (
     <AppBar elevation={0} position="static" style={{ background: 'black' }}>
       <Container maxWidth="xxl">
@@ -28,8 +46,17 @@ const Navbar = () => {
           </Box>
           <Box>
             <Stack spacing={1} direction="row">
-              <LogInButton />
-              <SignUpButton />
+              {user?.email ? (
+                <>
+                  <h2>{`Hello ${user.firstName}!`}</h2>
+                  <Button onClick={onLogOut}>Log Out</Button>
+                </>
+              ) : (
+                <>
+                  <LogInButton />
+                  <SignUpButton />
+                </>
+              )}
             </Stack>
           </Box>
         </Toolbar>
