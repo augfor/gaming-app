@@ -17,7 +17,7 @@ import {
   Typography
 } from '@mui/material';
 // API
-import { API_KEY } from '../api';
+import { API_KEY } from '../api/const';
 
 const theme = createTheme({
   palette: {
