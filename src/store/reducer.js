@@ -1,20 +1,28 @@
-import initialState from './state';
+import { blankState } from './state';
 
 function reducer(state, action) {
+  let draft;
+
   switch (action.type) {
     case 'SET_USER':
-      return {
+      draft = {
         ...state,
         user: action.payload
       };
+      break;
     case 'UNSET_USER':
-      return {
+      draft = {
         ...state,
-        user: initialState.user
+        user: blankState.user
       };
+      break;
     default:
       throw new Error();
   }
+
+  localStorage.setItem('state', JSON.stringify(draft));
+
+  return draft;
 }
 
 export default reducer;
