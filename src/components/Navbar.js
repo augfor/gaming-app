@@ -1,7 +1,6 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Context
-import Store from '../store/Store';
+import { useDispatch, useSelector } from '../store/Store';
 // Material UI
 import { AppBar, Box, Button, Container, Stack, Toolbar } from '@mui/material';
 // Components
@@ -14,8 +13,8 @@ import { logOut } from '../api/users';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { state, dispatch } = useContext(Store);
-  const { user } = state;
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   function onLogOut() {
     dispatch({

@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // Context
-import Store from '../store/Store';
+import { useDispatch } from '../store/Store';
 // Material UI
 import {
   Alert,
@@ -76,7 +76,7 @@ const theme = createTheme({
 
 const LogInButton = () => {
   const navigate = useNavigate();
-  const { dispatch } = useContext(Store);
+  const dispatch = useDispatch();
   const [error, setError] = useState('');
   // eslint-disable-next-line no-unused-vars
   // const [loading, setLoading] = useState(false);
