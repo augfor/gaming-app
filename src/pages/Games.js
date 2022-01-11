@@ -11,21 +11,16 @@ import {
   CardMedia,
   Container,
   createTheme,
-  CssBaseline,
   Grid,
   ThemeProvider,
   Typography
 } from '@mui/material';
-// API
+// api
 import { API_KEY } from '../api/const';
 
 const theme = createTheme({
   palette: {
-    background: { default: '#000000' },
     primary: {
-      main: '#3C4043'
-    },
-    secondary: {
       main: '#000000'
     }
   }
@@ -49,47 +44,48 @@ const Games = () => {
 
   return (
     <>
-      <Box sx={{ display: 'block', height: '2vh' }}></Box>
+      <Box sx={{ display: 'block', height: '7vh' }} />
       <ThemeProvider theme={theme}>
-        <CssBaseline />
         <Container>
+          <Typography
+            align="left"
+            variant="h1"
+            sx={{
+              fontFamily: 'Poppins',
+              padding: '30px 0 30px 0',
+              display: { xs: 'none', sm: 'block' }
+            }}
+          >
+            COMMUNITIES
+          </Typography>
           <Grid container spacing={4}>
             {games.map((game) => (
               <Grid key={game.id} item xs={12} sm={6} md={3}>
-                <Card sx={{ backgroundColor: 'black', paddingBottom: '25px' }}>
-                  <CardMedia
-                    component="img"
-                    alt={game.name}
-                    height="300"
-                    image={game.background_image}
-                    sx={{
-                      borderRadius: '5px'
-                    }}
-                  ></CardMedia>
+                <CardMedia
+                  component="img"
+                  alt={game.name}
+                  height="450"
+                  image={game.background_image}
+                  sx={{
+                    borderRadius: '5px',
+                    boxShadow: '5px 5px 5px rgb(138,138,138)'
+                  }}
+                ></CardMedia>
+                <Card
+                  elevation={0}
+                  sx={{ backgroundColor: 'transparent', paddingBottom: '35px' }}
+                >
                   <CardContent sx={{ padding: '8px 0px 8px 0px' }}>
                     <Typography
                       gutterBottom
                       variant="subtitle1"
                       component="div"
                       sx={{
-                        color: 'white',
                         fontWeight: 'bold',
                         height: 15
                       }}
                     >
                       {game.name}
-                    </Typography>
-                    <Typography
-                      gutterBottom
-                      variant="subtitle2"
-                      component="div"
-                      sx={{
-                        color: '#ADADB8',
-                        padding: '8px 0px 8px 0px',
-                        height: 15
-                      }}
-                    >
-                      {`Members: 0`}
                     </Typography>
                   </CardContent>
                   <CardActions sx={{ padding: '8px 0px 8px 0px' }}>
@@ -115,7 +111,7 @@ const Games = () => {
                     sx={{
                       backgroundColor: '#FF286E',
                       textTransform: 'none',
-                      margin: '16px 0px 16px 0px'
+                      margin: '10px 0px 10px 0px'
                     }}
                   >
                     <Link
