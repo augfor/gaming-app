@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
-
+// store
 import reducer from './reducer';
 import initialState from './state';
 
