@@ -1,7 +1,6 @@
 // Material UI
 import {
   Box,
-  Button,
   createTheme,
   CssBaseline,
   Paper,
@@ -9,8 +8,10 @@ import {
   Typography
 } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
-// Assets
+// assets
 import Image from '../assets/landing_bg.jpg';
+// components
+import LandingCTA from '../components/LandingCTA';
 
 const background = {
   paperContainer: {
@@ -42,7 +43,7 @@ const Landing = () => {
   return (
     <>
       <Paper style={background.paperContainer}>
-        <Box sx={{ display: 'block', height: '50vh' }}></Box>
+        <Box sx={{ display: 'block', height: '50vh' }} />
         <CssBaseline />
         <ThemeProvider theme={theme}>
           <Typography align="center" color="#FF286E" variant="h1">
@@ -55,7 +56,7 @@ const Landing = () => {
             alignItems="center"
             justifyContent="center"
           >
-            <Button variant="contained">{'START'}</Button>
+            <LandingCTA />
           </Box>
         </ThemeProvider>
       </Paper>
