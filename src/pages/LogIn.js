@@ -1,17 +1,23 @@
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 // Material UI
 import {
+  Alert,
   Avatar,
   Button,
+  Container,
   CssBaseline,
   TextField,
-  Link,
   Grid,
   Box,
-  Typography,
-  Container
+  Typography
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+// api
+import { logIn } from '../api/users';
+// store
+import { useDispatch } from '../store/Store';
 
 const theme = createTheme({
   palette: {
@@ -25,15 +31,43 @@ const theme = createTheme({
 });
 
 const LogIn = () => {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [error, setError] = useState('');
+  // const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const data = new FormData(event.currentTarget);
+    const formData = new FormData(event.currentTarget);
 
     console.log({
-      email: data.get('email'),
-      password: data.get('password')
+      email: formData.get('email'),
+      password: formData.get('password')
     });
+
+    try {
+      setError('');
+
+      const { data } = await logIn({
+        email: formData.get('email'),
+        password: formData.get('password')
+      });
+
+      console.log(data.firstName);
+      console.log(data.email);
+
+      dispatch({
+        type: 'SET_USER',
+        payload: { firstName: data.firstName, email: data.email }
+      });
+
+      // setLoading(false);
+
+      navigate('/games');
+    } catch (error) {
+      setError(error.message || error);
+    }
   };
 
   return (
@@ -90,16 +124,10 @@ const LogIn = () => {
               >
                 Log In
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
+              {error && <Alert severity="error">{error}</Alert>}
+              <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
+                  <Link to={'/signup'}>{"Don't have an account? Sign Up"}</Link>
                 </Grid>
               </Grid>
             </Box>

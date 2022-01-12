@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // Material UI
 import {
+  Alert,
   Avatar,
   Box,
   Button,
@@ -12,6 +13,9 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { signUp } from '../api/users';
+import { useDispatch } from '../store/Store';
+import { useState } from 'react';
 
 const theme = createTheme({
   palette: {
@@ -25,15 +29,48 @@ const theme = createTheme({
 });
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // eslint-disable-next-line no-unused-vars
+  const [error, setError] = useState('');
+  // const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const data = new FormData(event.currentTarget);
+    const formData = new FormData(event.currentTarget);
 
     console.log({
-      email: data.get('email'),
-      password: data.get('password')
+      firstName: formData.get('firstName'),
+      lastName: formData.get('lastName'),
+      email: formData.get('email'),
+      password: formData.get('password')
     });
+
+    try {
+      setError('');
+
+      const { data } = await signUp({
+        firstName: formData.get('firstName'),
+        lastName: formData.get('lastName'),
+        email: formData.get('email'),
+        password: formData.get('password')
+      });
+
+      console.log(data.firstName);
+      console.log(data.email);
+
+      dispatch({
+        type: 'SET_USER',
+        payload: { firstName: data.firstName, email: data.email }
+      });
+
+      // setLoading(false);
+
+      navigate('/games');
+    } catch (error) {
+      setError(error.message || error);
+    }
   };
 
   const inputProps = {
@@ -120,6 +157,7 @@ export default function SignUp() {
               >
                 Sign Up
               </Button>
+              {error && <Alert severity="error">{error}</Alert>}
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Link to={'/login'}>Already have an account? Log in</Link>
