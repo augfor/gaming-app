@@ -1,3 +1,10 @@
+## Get ready!
+
+Rename `.env.example` to `.env` and complete the following environment variables:
+
+- `REACT_APP_BASE_URL` should point to LATCOM's REST API.
+- `REACT_APP_API_KEY` is an API key from [RAWG](https://rawg.io/).
+
 ## Install and play
 
 Run the following commands. We are using [NPM](https://www.npmjs.com/) as package manager for this project.
