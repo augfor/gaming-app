@@ -1,26 +1,56 @@
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 // Context
 import { StoreProvider } from './store/Store';
-// Pages
-import Community from './pages/Community';
-import Games from './pages/Games';
-import Hero from './pages/Hero';
-import LogIn from './pages/LogIn';
-import ProtectedRoute from './pages/ProtectedRoute';
-import SignUp from './pages/SignUp';
 // Components
 import Navbar from './components/Navbar';
+// Pages
+const Community = React.lazy(() => import('./pages/Community'));
+const Games = React.lazy(() => import('./pages/Games'));
+const Hero = React.lazy(() => import('./pages/Hero'));
+const LogIn = React.lazy(() => import('./pages/LogIn'));
+const ProtectedRoute = React.lazy(() => import('./pages/ProtectedRoute'));
+const SignUp = React.lazy(() => import('./pages/SignUp'));
 
 function App() {
   return (
     <>
       <StoreProvider>
-        <Navbar></Navbar>
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Hero />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/games" element={<Games />} />
+          <Route
+            path="/"
+            element={
+              <React.Suspense fallback={<CircularProgress />}>
+                <Hero />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <React.Suspense fallback={<CircularProgress />}>
+                <SignUp />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <React.Suspense fallback={<CircularProgress />}>
+                <LogIn />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/games"
+            element={
+              <React.Suspense fallback={<CircularProgress />}>
+                <Games />
+              </React.Suspense>
+            }
+          />
           <Route
             path="/games/:id"
             element={
