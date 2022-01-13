@@ -2,12 +2,12 @@ import { Route, Routes } from 'react-router-dom';
 // Context
 import { StoreProvider } from './store/Store';
 // Pages
-import Landing from './pages/Landing';
-import SignUp from './pages/SignUp';
-import LogIn from './pages/LogIn';
-import Games from './pages/Games';
 import Community from './pages/Community';
+import Games from './pages/Games';
+import Hero from './pages/Hero';
+import LogIn from './pages/LogIn';
 import ProtectedRoute from './pages/ProtectedRoute';
+import SignUp from './pages/SignUp';
 // Components
 import Navbar from './components/Navbar';
 
@@ -17,7 +17,7 @@ function App() {
       <StoreProvider>
         <Navbar></Navbar>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<Hero />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/games" element={<Games />} />
