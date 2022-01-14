@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // Material UI
 import {
@@ -13,9 +14,10 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { signUp } from '../api/users';
+// api
+import { logIn } from '../api/users';
+// store
 import { useDispatch } from '../store/Store';
-import { useState } from 'react';
 
 const theme = createTheme({
   palette: {
@@ -28,10 +30,9 @@ const theme = createTheme({
   }
 });
 
-export default function SignUp() {
+const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState('');
   // const [loading, setLoading] = useState(false);
 
@@ -40,29 +41,23 @@ export default function SignUp() {
 
     const formData = new FormData(event.currentTarget);
 
-    console.log({
-      firstName: formData.get('firstName'),
-      lastName: formData.get('lastName'),
-      email: formData.get('email'),
-      password: formData.get('password')
-    });
-
     try {
       setError('');
 
-      const { data } = await signUp({
+      const { data } = await logIn({
         firstName: formData.get('firstName'),
         lastName: formData.get('lastName'),
         email: formData.get('email'),
         password: formData.get('password')
       });
 
-      console.log(data.firstName);
-      console.log(data.email);
-
       dispatch({
         type: 'SET_USER',
-        payload: { firstName: data.firstName, email: data.email }
+        payload: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email
+        }
       });
 
       // setLoading(false);
@@ -71,10 +66,6 @@ export default function SignUp() {
     } catch (error) {
       setError(error.message || error);
     }
-  };
-
-  const inputProps = {
-    color: '#FFFFFF'
   };
 
   return (
@@ -106,7 +97,6 @@ export default function SignUp() {
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
-                    inputProps={inputProps}
                     autoComplete="given-name"
                     name="firstName"
                     required
@@ -169,4 +159,6 @@ export default function SignUp() {
       </ThemeProvider>
     </>
   );
-}
+};
+
+export default SignUp;
