@@ -3,29 +3,16 @@ import axios from 'axios';
 import { BASE_URL } from './const';
 import { clearSession, setSession } from './session';
 
-export async function signUp(payload) {
-  try {
-    const { data: response } = await axios.post(
-      `${BASE_URL}/users/signup`,
-      payload
-    );
-
-    return response;
-  } catch (error) {
-    return error;
-  }
-}
-
 export async function logIn(payload) {
   try {
     const { data: response } = await axios.post(
-      `${BASE_URL}/users/login`,
+      `${BASE_URL}/users/${
+        Object.keys(payload).length > 2 ? 'signup' : 'login'
+      }`,
       payload
     );
     const { meta } = response;
     const { token } = meta;
-
-    console.log(payload);
 
     setSession(token);
 
