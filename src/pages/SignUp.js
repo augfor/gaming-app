@@ -15,7 +15,7 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // api
-import { logIn } from '../api/users';
+import { signUp } from '../api/users';
 // store
 import { useDispatch } from '../store/Store';
 
@@ -44,7 +44,7 @@ const SignUp = () => {
     try {
       setError('');
 
-      const { data } = await logIn({
+      const { data } = await signUp({
         firstName: formData.get('firstName'),
         lastName: formData.get('lastName'),
         email: formData.get('email'),
