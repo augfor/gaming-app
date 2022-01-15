@@ -16,7 +16,7 @@ import {
   Typography
 } from '@mui/material';
 // api
-import { API_KEY } from '../api/const';
+import { RAWG_API_KEY } from '../api/const';
 
 const theme = createTheme({
   palette: {
@@ -32,7 +32,7 @@ const Games = () => {
   useEffect(() => {
     const gameData = async () => {
       const response = await axios.get(
-        `https://api.rawg.io/api/games?key=${API_KEY}`
+        `https://api.rawg.io/api/games?key=${RAWG_API_KEY}`
       );
       console.log(response);
 
