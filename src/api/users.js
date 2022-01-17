@@ -1,6 +1,7 @@
 import axios from 'axios';
 // api
 import { BASE_URL, HEROKU_URL } from './const';
+import { ceCreateUser } from './ceCreateUser';
 import { clearSession, setSession } from './session';
 
 export async function signUp(payload) {
@@ -11,6 +12,8 @@ export async function signUp(payload) {
     );
     const { meta } = response;
     const { token } = meta;
+
+    ceCreateUser(payload);
 
     setSession(token);
 

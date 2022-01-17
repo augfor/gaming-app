@@ -34,7 +34,6 @@ const Games = () => {
       const response = await axios.get(
         `https://api.rawg.io/api/games?key=${RAWG_API_KEY}`
       );
-      console.log(response);
 
       setGames(response.data.results);
     };
@@ -123,7 +122,7 @@ const Games = () => {
                         textDecoration: 'none'
                       }}
                     >
-                      Join the Community
+                      Create a Community
                     </Link>
                   </Button>
                 </Card>
