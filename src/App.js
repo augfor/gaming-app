@@ -8,6 +8,8 @@ import Hero from './pages/Hero';
 import LogIn from './pages/LogIn';
 import ProtectedRoute from './pages/ProtectedRoute';
 import SignUp from './pages/SignUp';
+import Profile from './pages/Profile';
+import PublicProfile from './pages/PublicProfile';
 // Components
 import Navbar from './components/Navbar';
 
@@ -29,6 +31,8 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/publicprofile" element={<PublicProfile />} />
         </Routes>
       </StoreProvider>
     </>

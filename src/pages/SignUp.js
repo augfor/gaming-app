@@ -62,7 +62,11 @@ export default function SignUp() {
 
       dispatch({
         type: 'SET_USER',
-        payload: { firstName: data.firstName, email: data.email }
+        payload: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email
+        }
       });
 
       // setLoading(false);
