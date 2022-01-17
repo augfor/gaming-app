@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 // Material UI
 import {
   AppBar,
@@ -91,7 +91,13 @@ const Navbar = () => {
                         'aria-labelledby': 'basic-button'
                       }}
                     >
-                      <MenuItem onClick={handleClose}>Profile</MenuItem>
+                      <MenuItem
+                        component={Link}
+                        to="/Profile"
+                        onClick={handleClose}
+                      >
+                        Profile
+                      </MenuItem>
                       <MenuItem onClick={onLogOut}>Logout</MenuItem>
                     </Menu>
                   </div>
