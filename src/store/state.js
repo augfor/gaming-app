@@ -1,6 +1,7 @@
 export const blankState = {
   user: {
     firstName: '',
+    lastName: '',
     email: ''
   }
 };
