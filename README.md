@@ -3,7 +3,7 @@
 Rename `.env.example` to `.env` and complete the following environment variables:
 
 - `REACT_APP_BASE_URL` should point to LATCOM's REST API.
-- `REACT_APP_API_KEY` is an API key from [RAWG](https://rawg.io/).
+- `REACT_APP_RAWG_API_KEY` is an API key from [RAWG](https://rawg.io/).
 
 ## Install and play
 

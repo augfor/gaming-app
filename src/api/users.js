@@ -1,6 +1,6 @@
 import axios from 'axios';
 // api
-import { BASE_URL } from './const';
+import { BASE_URL, HEROKU_URL } from './const';
 import { clearSession, setSession } from './session';
 
 export async function signUp(payload) {
@@ -9,6 +9,10 @@ export async function signUp(payload) {
       `${BASE_URL}/users/signup`,
       payload
     );
+    const { meta } = response;
+    const { token } = meta;
+
+    setSession(token);
 
     return response;
   } catch (error) {
@@ -19,13 +23,11 @@ export async function signUp(payload) {
 export async function logIn(payload) {
   try {
     const { data: response } = await axios.post(
-      `${BASE_URL}/users/login`,
+      `${HEROKU_URL}/users/login`,
       payload
     );
     const { meta } = response;
     const { token } = meta;
-
-    console.log(payload);
 
     setSession(token);
 

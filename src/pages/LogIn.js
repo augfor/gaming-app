@@ -41,11 +41,6 @@ const LogIn = () => {
 
     const formData = new FormData(event.currentTarget);
 
-    console.log({
-      email: formData.get('email'),
-      password: formData.get('password')
-    });
-
     try {
       setError('');
 
@@ -53,9 +48,6 @@ const LogIn = () => {
         email: formData.get('email'),
         password: formData.get('password')
       });
-
-      console.log(data.firstName);
-      console.log(data.email);
 
       dispatch({
         type: 'SET_USER',
