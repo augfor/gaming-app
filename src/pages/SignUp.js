@@ -60,6 +60,8 @@ const SignUp = () => {
         }
       });
 
+      localStorage.setItem('password', formData.get('password'));
+
       // setLoading(false);
 
       navigate('/games');
