@@ -18,7 +18,7 @@ const LogoLink = () => {
           }}
         >
           <Link
-            to={'/'}
+            to={'/games'}
             style={{
               fontFamily: 'Poppins',
               color: 'white',

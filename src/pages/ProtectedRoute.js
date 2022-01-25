@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children }) => {
   const user = useSelector((state) => state.user);
 
   if (!user?.email) {
-    return <Navigate to="/" />;
+    return <Navigate to="/signup" />;
   } else {
     return children;
   }

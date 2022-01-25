@@ -2,12 +2,11 @@ import { Route, Routes } from 'react-router-dom';
 // Context
 import { StoreProvider } from './store/Store';
 // Pages
-import Games from './pages/Games';
 import Hero from './pages/Hero';
-import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
+import LogIn from './pages/LogIn';
 import Profile from './pages/Profile';
-import PublicProfile from './pages/PublicProfile';
+import Games from './pages/Games';
 import Chat from './pages/Chat';
 import ProtectedRoute from './pages/ProtectedRoute';
 // Components
@@ -22,6 +21,7 @@ function App() {
           <Route path="/" element={<Hero />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/games" element={<Games />} />
           <Route
             path="/games/:id"
@@ -31,8 +31,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/publicprofile" element={<PublicProfile />} />
         </Routes>
       </StoreProvider>
     </>
