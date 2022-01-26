@@ -1,6 +1,5 @@
 // Material UI
 import { Box } from '@mui/material';
-import React from 'react';
 // components
 import TabPanel from '../components/TabPanel';
 

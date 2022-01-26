@@ -1,10 +1,13 @@
+import { useContext } from 'react';
 // Material UI
-import * as React from 'react';
 import { Avatar, Box, Typography } from '@mui/material';
 // store
 import { useSelector } from '../store/Store';
+import ImageContext from '../store/ImageContext';
 
-function AvatarUser() {
+const AvatarUser = () => {
+  const { imagePreview } = useContext(ImageContext);
+
   const user = useSelector((state) => state.user);
   return (
     <>
@@ -17,6 +20,7 @@ function AvatarUser() {
       >
         <Avatar
           alt="Remy Sharp"
+          src={imagePreview}
           sx={{
             width: '8rem',
             height: '8rem',
@@ -33,6 +37,6 @@ function AvatarUser() {
       </Box>
     </>
   );
-}
+};
 
 export default AvatarUser;

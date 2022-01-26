@@ -1,6 +1,5 @@
+import { useContext, useState } from 'react';
 // Material UI
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { styled } from '@mui/material/styles';
 import {
   Avatar,
   Box,
@@ -11,8 +10,10 @@ import {
   Stack,
   Typography
 } from '@mui/material';
-import * as React from 'react';
-import { useState } from 'react';
+import { styled } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+// store
+import ImageContext from '../store/ImageContext';
 
 const theme = createTheme({
   palette: {
@@ -32,12 +33,10 @@ const Input = styled('input')({
   display: 'none'
 });
 
-export default function UploadButton() {
+const UploadButton = () => {
+  const { imagePreview, set_imagePreview } = useContext(ImageContext);
   const [inputs, set_inputs] = useState({});
-  const [imagePreview, set_imagePreview] = useState(null);
-  // const [imageInfo, set_imageInfo] = useState(null);
 
-  // Configuración de Imagen
   const fileHandler = (event) => {
     const file = event.target.files[0];
     const fileExt = file.name.split('.').pop();
@@ -160,12 +159,6 @@ export default function UploadButton() {
       </Box>
     </>
   );
-}
+};
 
-// display: flex;
-// gap: 1em;
-// align-items: center;
-// border: 1px solid black;
-// border-radius: 4px;
-// padding: 16px;
-// height: 30px;
+export default UploadButton;

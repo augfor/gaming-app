@@ -1,13 +1,14 @@
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 // Material UI
 import { Box, Grid, Tab, Tabs, Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import * as React from 'react';
-import PropTypes from 'prop-types';
+// store
+import ImageContext from '../store/ImageContext';
 // components
 import AvatarUser from './AvatarUser';
-// import PublicProfilelButton from './PublicProfileButton';
-import UploadImage from './UploadImage';
 import AccountInfo from './AccountInfo';
+import UploadImage from './UploadImage';
 
 const theme = createTheme({
   palette: {
@@ -24,7 +25,7 @@ const theme = createTheme({
   }
 });
 
-function TabPanel(props) {
+const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -42,7 +43,7 @@ function TabPanel(props) {
       )}
     </div>
   );
-}
+};
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -50,69 +51,78 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired
 };
 
-function a11yProps(index) {
+const a11yProps = (index) => {
   return {
     id: `vertical-tab-${index}`,
     'aria-controls': `vertical-tabpanel-${index}`
   };
-}
+};
 
-export default function VerticalTabs() {
-  const [value, setValue] = React.useState(0);
+const VerticalTabs = () => {
+  const [imagePreview, set_imagePreview] = useState(null);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Box
-      sx={{
-        marginTop: 8,
-        display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'center'
+    <ImageContext.Provider
+      value={{
+        imagePreview,
+        set_imagePreview
       }}
     >
-      <ThemeProvider theme={theme}>
-        <Tabs
-          orientation="vertical"
-          onChange={handleChange}
-          value={value}
-          aria-label="Vertical tabs example"
-          sx={{
-            borderRight: 1,
-            borderColor: 'divider',
-            display: 'flex',
-            width: '20%',
-            mt: '5em'
-          }}
-        >
-          <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'center'
+        }}
+      >
+        <ThemeProvider theme={theme}>
+          <Tabs
+            orientation="vertical"
+            onChange={handleChange}
+            value={value}
+            aria-label="Vertical tabs example"
+            sx={{
+              borderRight: 1,
+              borderColor: 'divider',
+              display: 'flex',
+              width: '20%',
+              mt: '5em'
+            }}
           >
-            <AvatarUser />
-            {/* <PublicProfilelButton /> */}
-          </Grid>
-          <Tab label="Account" {...a11yProps(0)} />
-          <Tab label="Photography" {...a11yProps(1)} />
-          <Tab label="Communities" {...a11yProps(2)} />
-        </Tabs>
-        <TabPanel value={value} index={0}>
-          <AccountInfo />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <AccountInfo />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <UploadImage />
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          Communities
-        </TabPanel>
-      </ThemeProvider>
-    </Box>
+            <Grid
+              container
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <AvatarUser />
+            </Grid>
+            <Tab label="Account" {...a11yProps(0)} />
+            <Tab label="Photography" {...a11yProps(1)} />
+            <Tab label="Communities" {...a11yProps(2)} />
+          </Tabs>
+          <TabPanel value={value} index={0}>
+            <AccountInfo />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <AccountInfo />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <UploadImage />
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            Communities
+          </TabPanel>
+        </ThemeProvider>
+      </Box>
+    </ImageContext.Provider>
   );
-}
+};
+
+export default VerticalTabs;
