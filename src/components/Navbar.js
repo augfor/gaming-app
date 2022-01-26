@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 // Material UI
 import {
   AppBar,
+  Avatar,
   Box,
-  Button,
   Container,
   createTheme,
+  IconButton,
   Menu,
   MenuItem,
   Stack,
@@ -21,8 +22,10 @@ import SignUpButton from './SignUpButton';
 import { logOut } from '../api/users';
 // store
 import { useDispatch, useSelector } from '../store/Store';
+import ImageContext from '../store/ImageContext';
 
 const Navbar = () => {
+  const { imagePreview } = useContext(ImageContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -70,37 +73,49 @@ const Navbar = () => {
             <Stack spacing={1} direction="row">
               {user?.email ? (
                 <>
-                  <div>
-                    <ThemeProvider theme={theme}>
-                      <Button
-                        id="basic-button"
-                        aria-controls={open ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
-                        onClick={handleClick}
+                  <ThemeProvider theme={theme}>
+                    <React.Fragment>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          textAlign: 'center'
+                        }}
                       >
-                        {user.firstName}
-                      </Button>
-                    </ThemeProvider>
-                    <Menu
-                      id="basic-menu"
-                      anchorEl={anchorEl}
-                      open={open}
-                      onClose={handleClose}
-                      MenuListProps={{
-                        'aria-labelledby': 'basic-button'
-                      }}
+                        <IconButton
+                          onClick={handleClick}
+                          size="small"
+                          sx={{ ml: 2 }}
+                          aria-controls={open ? 'account-menu' : undefined}
+                          aria-haspopup="true"
+                          aria-expanded={open ? 'true' : undefined}
+                        >
+                          <Avatar
+                            src={imagePreview}
+                            sx={{ color: 'black', width: 44, height: 44 }}
+                          >{`${user.firstName[0]}`}</Avatar>
+                        </IconButton>
+                      </Box>
+                    </React.Fragment>
+                  </ThemeProvider>
+                  <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                      'aria-labelledby': 'basic-button'
+                    }}
+                  >
+                    <MenuItem
+                      component={Link}
+                      to="/Profile"
+                      onClick={handleClose}
                     >
-                      <MenuItem
-                        component={Link}
-                        to="/Profile"
-                        onClick={handleClose}
-                      >
-                        Profile
-                      </MenuItem>
-                      <MenuItem onClick={onLogOut}>Logout</MenuItem>
-                    </Menu>
-                  </div>
+                      Profile
+                    </MenuItem>
+                    <MenuItem onClick={onLogOut}>Logout</MenuItem>
+                  </Menu>
                 </>
               ) : (
                 <>

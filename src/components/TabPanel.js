@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 // Material UI
 import { Box, Grid, Tab, Tabs, Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// store
-import ImageContext from '../store/ImageContext';
 // components
 import AvatarUser from './AvatarUser';
 import AccountInfo from './AccountInfo';
@@ -59,7 +57,6 @@ const a11yProps = (index) => {
 };
 
 const VerticalTabs = () => {
-  const [imagePreview, set_imagePreview] = useState(null);
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -67,61 +64,54 @@ const VerticalTabs = () => {
   };
 
   return (
-    <ImageContext.Provider
-      value={{
-        imagePreview,
-        set_imagePreview
+    <Box
+      sx={{
+        marginTop: 8,
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'center'
       }}
     >
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          alignItems: 'flex-start',
-          justifyContent: 'center'
-        }}
-      >
-        <ThemeProvider theme={theme}>
-          <Tabs
-            orientation="vertical"
-            onChange={handleChange}
-            value={value}
-            aria-label="Vertical tabs example"
-            sx={{
-              borderRight: 1,
-              borderColor: 'divider',
-              display: 'flex',
-              width: '20%',
-              mt: '5em'
-            }}
+      <ThemeProvider theme={theme}>
+        <Tabs
+          orientation="vertical"
+          onChange={handleChange}
+          value={value}
+          aria-label="Vertical tabs example"
+          sx={{
+            borderRight: 1,
+            borderColor: 'divider',
+            display: 'flex',
+            width: '20%',
+            mt: '5em'
+          }}
+        >
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
           >
-            <Grid
-              container
-              direction="column"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <AvatarUser />
-            </Grid>
-            <Tab label="Account" {...a11yProps(0)} />
-            <Tab label="Photography" {...a11yProps(1)} />
-            <Tab label="Communities" {...a11yProps(2)} />
-          </Tabs>
-          <TabPanel value={value} index={0}>
-            <AccountInfo />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <AccountInfo />
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            <UploadImage />
-          </TabPanel>
-          <TabPanel value={value} index={3}>
-            Communities
-          </TabPanel>
-        </ThemeProvider>
-      </Box>
-    </ImageContext.Provider>
+            <AvatarUser />
+          </Grid>
+          <Tab label="Account" {...a11yProps(0)} />
+          <Tab label="Photography" {...a11yProps(1)} />
+          <Tab label="Communities" {...a11yProps(2)} />
+        </Tabs>
+        <TabPanel value={value} index={0}>
+          <AccountInfo />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <AccountInfo />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <UploadImage />
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          Communities
+        </TabPanel>
+      </ThemeProvider>
+    </Box>
   );
 };
 
