@@ -95,8 +95,7 @@ const VerticalTabs = () => {
             <AvatarUser />
           </Grid>
           <Tab label="Account" {...a11yProps(0)} />
-          <Tab label="Photography" {...a11yProps(1)} />
-          <Tab label="Communities" {...a11yProps(2)} />
+          <Tab label="Photo" {...a11yProps(1)} />
         </Tabs>
         <TabPanel value={value} index={0}>
           <AccountInfo />
@@ -106,9 +105,6 @@ const VerticalTabs = () => {
         </TabPanel>
         <TabPanel value={value} index={2}>
           <UploadImage />
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          Communities
         </TabPanel>
       </ThemeProvider>
     </Box>

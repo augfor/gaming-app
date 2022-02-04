@@ -7,8 +7,7 @@ import {
   Container,
   CssBaseline,
   Grid,
-  Stack,
-  Typography
+  Stack
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -63,36 +62,11 @@ const UploadButton = () => {
         <ThemeProvider theme={theme}>
           <Container component="main" maxWidth="xs">
             <CssBaseline />
-            <Typography
-              component="h1"
-              variant="h5"
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                color: 'black',
-                fontWeight: 'bold',
-                textDecoration: 'none'
-              }}
-            >
-              PHOTOGRAPHY
-            </Typography>
-            <Typography
-              sx={{
-                mt: '1em',
-                fontWeight: 'bold',
-                display: 'flex',
-                flexDirection: 'column'
-              }}
-            >
-              Image Preview
-            </Typography>
             <Grid
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                border: '1px solid black',
                 padding: ' 16px 30px ',
                 mb: '1em'
               }}
@@ -125,7 +99,6 @@ const UploadButton = () => {
                   className="upload-container"
                   htmlFor="contained-button-file"
                 >
-                  {/* <label>{imageInfo?.name} </label> */}
                   <Input
                     accept="image/*"
                     id="contained-button-file"

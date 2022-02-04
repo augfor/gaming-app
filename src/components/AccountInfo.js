@@ -112,7 +112,7 @@ const AccountInfo = () => {
                     required
                     fullWidth
                     name="password"
-                    placeholder="Escribe la contraseña actual"
+                    placeholder="Type in current password"
                     type="password"
                     // id="password"
                     autoComplete="new-password"
@@ -123,7 +123,7 @@ const AccountInfo = () => {
                     required
                     fullWidth
                     name="password"
-                    placeholder="Escribe la contraseña nueva"
+                    placeholder="Type in new password"
                     type="password"
                     // id="password"
                     autoComplete="new-password"
@@ -134,7 +134,7 @@ const AccountInfo = () => {
                     required
                     fullWidth
                     name="password"
-                    placeholder="Escribe la contraseña otra vez"
+                    placeholder="Confirm new password"
                     type={Password}
                     // type={values.showPassword ? 'text' : 'password'}
                     autoComplete="new-password"
