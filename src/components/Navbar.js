@@ -1,15 +1,14 @@
-import React, { Fragment, useContext, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 // Material UI
 import {
   AppBar,
   Avatar,
   Box,
+  Button,
   Container,
   createTheme,
   IconButton,
-  Menu,
-  MenuItem,
   Stack,
   Toolbar
 } from '@mui/material';
@@ -38,17 +37,6 @@ const Navbar = () => {
     navigate('/games');
   }
 
-  // menu handler
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  // Material UI theme
   let theme = createTheme({
     palette: {
       primary: {
@@ -74,48 +62,18 @@ const Navbar = () => {
               {user?.email ? (
                 <>
                   <ThemeProvider theme={theme}>
-                    <React.Fragment>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          textAlign: 'center'
-                        }}
-                      >
-                        <IconButton
-                          onClick={handleClick}
-                          size="small"
-                          sx={{ ml: 2 }}
-                          aria-controls={open ? 'account-menu' : undefined}
-                          aria-haspopup="true"
-                          aria-expanded={open ? 'true' : undefined}
-                        >
-                          <Avatar
-                            src={imagePreview}
-                            sx={{ color: 'black', width: 44, height: 44 }}
-                          >{`${user.firstName[0]}`}</Avatar>
-                        </IconButton>
-                      </Box>
-                    </React.Fragment>
+                    <Button variant="text" onClick={onLogOut}>
+                      log out
+                    </Button>
+                    <IconButton size="small">
+                      <Link to={'/profile'} style={{ textDecoration: 'none' }}>
+                        <Avatar
+                          src={imagePreview}
+                          sx={{ color: 'black', width: 44, height: 44 }}
+                        >{`${user.firstName[0]}`}</Avatar>
+                      </Link>
+                    </IconButton>
                   </ThemeProvider>
-                  <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    MenuListProps={{
-                      'aria-labelledby': 'basic-button'
-                    }}
-                  >
-                    <MenuItem
-                      component={Link}
-                      to="/Profile"
-                      onClick={handleClose}
-                    >
-                      Profile
-                    </MenuItem>
-                    <MenuItem onClick={onLogOut}>Logout</MenuItem>
-                  </Menu>
                 </>
               ) : (
                 <>

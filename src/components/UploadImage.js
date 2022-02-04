@@ -50,10 +50,6 @@ const UploadButton = () => {
 
     set_inputs({ ...inputs, file });
     set_imagePreview(URL.createObjectURL(file));
-    // set_imageInfo(file);
-
-    console.log(file);
-    console.log(verifyFileExt);
   };
 
   return (
