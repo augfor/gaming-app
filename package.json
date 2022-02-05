@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "cypress": "^9.4.1",
+    "cypress-file-upload": "^5.0.8",
     "eslint": "^7.32.0"
   }
 }
