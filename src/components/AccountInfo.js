@@ -8,7 +8,6 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import { Password } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // store
 import { useSelector } from '../store/Store';
@@ -49,7 +48,8 @@ const AccountInfo = () => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 color: 'black',
-                fontWeight: 'bold',
+                fontFamily: 'Poppins',
+                fontSize: 28,
                 textDecoration: 'none'
               }}
             >
@@ -135,7 +135,7 @@ const AccountInfo = () => {
                     fullWidth
                     name="password"
                     placeholder="Confirm new password"
-                    type={Password}
+                    type="password"
                     // type={values.showPassword ? 'text' : 'password'}
                     autoComplete="new-password"
                   />
