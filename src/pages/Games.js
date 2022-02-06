@@ -39,7 +39,7 @@ const Games = () => {
     };
 
     gameData();
-  }, []);
+  }, [setGames]);
 
   return (
     <>
