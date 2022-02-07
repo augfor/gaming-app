@@ -1,14 +1,14 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 // api
-import { BASE_URL, HEROKU_URL } from './const';
+import { HEROKU_URL } from './const';
 import { ceCreateUser } from './ceCreateUser';
 import { clearSession, setSession } from './session';
 
 export async function signUp(payload) {
   try {
     const { data: response } = await axios.post(
-      `${BASE_URL}/users/signup`,
+      `${HEROKU_URL}/users/signup`,
       payload
     );
     const { meta } = response;
