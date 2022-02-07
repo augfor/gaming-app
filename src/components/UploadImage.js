@@ -7,7 +7,8 @@ import {
   Container,
   CssBaseline,
   Grid,
-  Stack
+  Stack,
+  Typography
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -58,12 +59,28 @@ const UploadButton = () => {
         <ThemeProvider theme={theme}>
           <Container component="main" maxWidth="xs">
             <CssBaseline />
+            <Typography
+              component="h1"
+              variant="h5"
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                color: 'black',
+                textDecoration: 'none',
+                fontFamily: 'Poppins',
+                fontSize: 28,
+                textTransform: 'uppercase'
+              }}
+            >
+              PHOTOGRAPHY
+            </Typography>
             <Grid
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                padding: ' 16px 30px ',
+                padding: ' 45px 90px 30px',
                 mb: '1em'
               }}
             >
@@ -80,8 +97,6 @@ const UploadButton = () => {
             </Grid>
             <Grid
               sx={{
-                borderBlockEnd: '1px solid black',
-                mb: '1em',
                 alignItems: 'center'
               }}
             >
@@ -108,8 +123,7 @@ const UploadButton = () => {
                     component="span"
                     sx={{
                       display: 'flex',
-                      alignItems: 'center',
-                      mb: '1em'
+                      alignItems: 'center'
                     }}
                   >
                     Upload Image
@@ -119,9 +133,6 @@ const UploadButton = () => {
             </Grid>
             <label>
               <Input accept="image/*" multiple />
-              <Button variant="contained" fullWidth component="span">
-                SAVE IMAGE
-              </Button>
             </label>
           </Container>
         </ThemeProvider>

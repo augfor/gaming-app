@@ -13,6 +13,8 @@ import {
   Toolbar
 } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
 // components
 import LogoLink from './LogoLink';
 import LogInButton from './LogInButton';
@@ -22,6 +24,17 @@ import { logOut } from '../api/users';
 // store
 import { useDispatch, useSelector } from '../store/Store';
 import ImageContext from '../store/ImageContext';
+
+const BootstrapTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} arrow classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.arrow}`]: {
+    color: theme.palette.common.black
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.black
+  }
+}));
 
 const Navbar = () => {
   const { imagePreview } = useContext(ImageContext);
@@ -67,10 +80,12 @@ const Navbar = () => {
                     </Button>
                     <IconButton size="small">
                       <Link to={'/profile'} style={{ textDecoration: 'none' }}>
-                        <Avatar
-                          src={imagePreview}
-                          sx={{ color: 'black', width: 44, height: 44 }}
-                        >{`${user.firstName[0]}`}</Avatar>
+                        <BootstrapTooltip title="Profile">
+                          <Avatar
+                            src={imagePreview}
+                            sx={{ color: 'black', width: 44, height: 44 }}
+                          >{`${user.firstName[0]}`}</Avatar>
+                        </BootstrapTooltip>
                       </Link>
                     </IconButton>
                   </ThemeProvider>
