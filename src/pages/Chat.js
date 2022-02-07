@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ChatEngine } from 'react-chat-engine';
+import jwtDecode from 'jwt-decode';
 // Material UI
 import { Box, Container, Paper } from '@mui/material';
 // CSS
@@ -38,6 +39,8 @@ const Chat = () => {
     gameData();
   }, []);
 
+  const localPassword = jwtDecode(localStorage.getItem('token')).password;
+
   return (
     <>
       <Paper style={background.paperContainer}>
@@ -47,7 +50,7 @@ const Chat = () => {
             height="92.3vh"
             projectID={`${CHATENGINE_PROJECT_ID}`}
             userName={user?.firstName}
-            userSecret={localStorage.getItem('password')}
+            userSecret={localPassword}
           />
         </Container>
       </Paper>
