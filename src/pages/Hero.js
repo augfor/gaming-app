@@ -26,7 +26,6 @@ import iris from '../assets/iris.jpg';
 import jerson from '../assets/jerson.jpg';
 // components
 import LandingCTA from '../components/LandingCTA';
-// import Team from '../components/Team';
 
 const background = {
   paperContainer: {
@@ -90,9 +89,10 @@ const Landing = () => {
           width="100vw"
           alignItems="right"
           position="fixed"
+          bottom={10}
           justifyContent="right"
         >
-          <Stack direction="row" spacing={5} paddingTop={2} paddingRight={5}>
+          <Stack direction="row" spacing={5} paddingRight={5}>
             <Box>
               <Box marginBottom={1}>
                 <BootstrapTooltip title="Augusto Forero" placement="top">
