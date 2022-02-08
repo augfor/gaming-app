@@ -68,8 +68,15 @@ const VerticalTabs = () => {
       sx={{
         marginTop: 8,
         display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'center'
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: {
+          xs: 'column',
+          sm: 'column',
+          md: 'row',
+          lg: 'row',
+          xl: 'row'
+        }
       }}
     >
       <ThemeProvider theme={theme}>
@@ -82,8 +89,10 @@ const VerticalTabs = () => {
             borderRight: 1,
             borderColor: 'divider',
             display: 'flex',
-            width: '20%',
-            mt: '5em'
+            alignItems: 'center',
+            justifyContent: 'center',
+            mt: '5em',
+            width: { xs: '100%', sm: '100%', md: '20%', lg: '20%', xl: '20%' }
           }}
         >
           <Grid
@@ -94,8 +103,8 @@ const VerticalTabs = () => {
           >
             <AvatarUser />
           </Grid>
-          <Tab label="Account" {...a11yProps(0)} />
-          <Tab label="Photo" {...a11yProps(1)} />
+          <Tab sx={{ margin: '0 auto' }} label="Account" {...a11yProps(0)} />
+          <Tab sx={{ margin: '0 auto' }} label="Photo" {...a11yProps(1)} />
         </Tabs>
         <TabPanel value={value} index={0}>
           <AccountInfo />
