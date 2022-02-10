@@ -1,3 +1,9 @@
+## LATCOM
+
+This app will help you create gaming communities in a flash.
+
+https://app.netlify.com/sites/latcom/settings/general
+
 ## Get ready!
 
 Rename `.env.example` to `.env` and complete the following environment variables:
@@ -18,6 +24,6 @@ You can now view **gaming-app** in the browser at [http://localhost:3000](http:/
 
 ## Meet the team
 
-- [Augusto Forero](https://github.com/augfor).
-- [Iris Monteza](https://github.com/IrisMonteza).
-- [Jerson Zúñiga-Coayla](https://github.com/jersonzc).
+- [Augusto Forero](https://github.com/augfor)
+- [Iris Monteza](https://github.com/IrisMonteza)
+- [Jerson Zúñiga-Coayla](https://github.com/jersonzc)
