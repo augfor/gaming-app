@@ -2,7 +2,7 @@
 
 This app will help you create gaming communities in a flash.
 
-https://app.netlify.com/sites/latcom/settings/general
+https://latcom.netlify.app/
 
 ## Get ready!
 
